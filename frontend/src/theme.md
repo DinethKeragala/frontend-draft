@@ -250,3 +250,8 @@ When implementing this dark theme:
 - Green primary data series
 - Muted grid lines in dark-accent
 - Colorful data points for different categories
+
+
+### Folder Layout
+if need to make a page and its component use a folder for that page inside components
+ ui folder for globle ui elements
