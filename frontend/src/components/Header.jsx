@@ -10,12 +10,13 @@ import {
   LogOut,
   BarChart3,
   Users,
-  Zap
+  Zap,
+  Plus
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ onCreateContest }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
@@ -132,6 +133,25 @@ const Header = () => {
 
           {/* Right Side Actions */}
           <div className="flex items-center space-x-4">
+            
+            {/* Create Contest Button */}
+            <button
+              onClick={onCreateContest}
+              className="hidden md:flex items-center space-x-2 px-4 py-2 bg-green-primary text-dark-primary 
+                       hover:bg-green-secondary rounded-lg font-medium transition-all duration-200 
+                       shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Create Contest</span>
+            </button>
+
+            {/* Mobile Create Contest Button */}
+            <button
+              onClick={onCreateContest}
+              className="md:hidden p-2 text-green-primary hover:text-green-secondary transition-colors"
+            >
+              <Plus className="h-5 w-5" />
+            </button>
             
             {/* Mobile Search Button */}
             <button className="lg:hidden p-2 text-text-secondary hover:text-text-primary transition-colors">
