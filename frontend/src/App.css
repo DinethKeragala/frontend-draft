@@ -90,6 +90,11 @@
   --color-accent-red: var(--color-error-600);
   --color-accent-blue: var(--color-info-600);
 
+  /* Shadow Colors for Glow Effects */
+  --color-shadow-green: oklch(0.88 0.25 130 / 0.3);
+  --color-shadow-green-lg: oklch(0.88 0.25 130 / 0.2);
+  --color-shadow-dark: oklch(0.08 0.005 240 / 0.5);
+
   /* Font Family */
   --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-family-mono: 'Fira Code', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
@@ -414,4 +419,123 @@ body {
   color: oklch(0.88 0.25 130); /* green-primary */
   font-family: var(--font-family-mono);
   font-weight: 600;
+}
+
+/* Visual Effects & Animations */
+.glow-green {
+  box-shadow: 0 0 20px var(--color-shadow-green);
+}
+
+.glow-green-lg {
+  box-shadow: 0 0 40px var(--color-shadow-green-lg);
+}
+
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.pulse-green {
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.loading-skeleton {
+  background: linear-gradient(90deg, 
+    oklch(0.18 0.008 235) 25%, 
+    oklch(0.22 0.012 230) 50%, 
+    oklch(0.18 0.008 235) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.backdrop-blur-subtle {
+  backdrop-filter: blur(8px);
+}
+
+.glass-morphism {
+  background: oklch(0.18 0.008 235 / 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid oklch(0.25 0.015 225 / 0.3);
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 768px) {
+  .hover-lift:hover {
+    transform: none; /* Disable lift effect on touch devices */
+  }
+  
+  /* Ensure touch targets are at least 44px */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better spacing for mobile */
+  .grid {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Reduce padding on small screens */
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Stack flex items on mobile */
+  .flex-col-mobile {
+    flex-direction: column;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .hover-lift {
+    transition: none;
+  }
+  
+  .pulse-green {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .border-dark-accent {
+    border-color: oklch(0.4 0.02 240);
+  }
+  
+  .text-text-secondary {
+    color: oklch(0.8 0.01 240);
+  }
 }
